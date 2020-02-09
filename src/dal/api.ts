@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const instance = axios.create({
-    baseURL: "http://localhost:3004/counter"
+    baseURL: "http://localhost:3004/"
 });
 
 interface ICounterResponse {
@@ -10,11 +10,11 @@ interface ICounterResponse {
 
 const api = {
     async getCounterValue(): Promise<number> {
-        let response = await instance.get<ICounterResponse>('');
+        let response = await instance.get<ICounterResponse>('counter');
         return response.data.value
     },
     async incrementCounterValue(value: number): Promise<number> {
-        let response = await instance.patch<ICounterResponse>('', {value});
+        let response = await instance.patch<ICounterResponse>('counter', {value});
         return response.data.value
     }
 };
