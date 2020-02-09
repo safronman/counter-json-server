@@ -47,12 +47,12 @@ const incrementValueSuccess = (counterValue: number): IIncrementValueSuccessActi
 };
 
 // Thunks
-export const getInitialValue = () => async (dispatch: Dispatch) => {
+export const getInitialValue = () => async (dispatch: Dispatch<CounterActionTypes>) => {
     let counterValue = await api.getCounterValue();
     dispatch(getInitialValueSuccess(counterValue))
 };
 
-export const incrementValue = () => async (dispatch: Dispatch, getState: () => RootState) => {
+export const incrementValue = () => async (dispatch: Dispatch<CounterActionTypes>, getState: () => RootState) => {
     let currentValue = getState().counter.value;
     let counterValue = await api.incrementCounterValue(currentValue + 1);
     dispatch(incrementValueSuccess(counterValue))
